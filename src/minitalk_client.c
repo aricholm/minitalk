@@ -6,7 +6,7 @@
 /*   By: aricholm <aricholm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 18:48:00 by aricholm          #+#    #+#             */
-/*   Updated: 2021/12/22 15:24:54 by aricholm         ###   ########.fr       */
+/*   Updated: 2021/12/22 15:55:24 by aricholm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	waiting(void)
 {
 	while (g_unread)
-		;
+		usleep(5);
 	g_unread = TRUE;
 }
 
