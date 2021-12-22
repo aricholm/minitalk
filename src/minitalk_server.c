@@ -6,7 +6,7 @@
 /*   By: aricholm <aricholm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:00:10 by aricholm          #+#    #+#             */
-/*   Updated: 2021/11/05 15:25:20 by aricholm         ###   ########.fr       */
+/*   Updated: 2021/12/22 15:24:43 by aricholm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,23 @@
 static void	handle_sigusr(int signal, siginfo_t *siginfo, void *v)
 {
 	static unsigned char	input = 0;
-	static unsigned char	mask = 0x80;
+	static unsigned char	mask = 0b10000000;
 
+	(void)v;
 	if (mask)
 	{
 		input += mask * (signal == SIGUSR1);
 		mask = mask >> 1;
-		kill(siginfo->si_pid, SIGUSR1);
 	}
 	if (!mask)
 	{
 		write(1, &input, 1);
 		if (!input)
-		{
 			kill(siginfo->si_pid, SIGUSR2);
-			siginfo->si_pid = 0;
-		}
-		mask = 0x80;
+		mask = 0b10000000;
 		input = 0;
 	}
-	(void)v;
+	kill(siginfo->si_pid, SIGUSR1);
 }
 
 int	main(void)

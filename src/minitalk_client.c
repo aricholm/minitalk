@@ -6,7 +6,7 @@
 /*   By: aricholm <aricholm@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 18:48:00 by aricholm          #+#    #+#             */
-/*   Updated: 2021/11/05 15:31:17 by aricholm         ###   ########.fr       */
+/*   Updated: 2021/12/22 15:24:54 by aricholm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	send_message(const int spid, const char *s)
 	i = 0;
 	while (s[i])
 	{
-		mask = 0x80;
+		mask = 0b10000000;
 		while (mask)
 		{
 			if (s[i] & mask)
